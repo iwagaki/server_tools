@@ -9,7 +9,7 @@ import re
 import time
 import datetime
 
-class HttpSession:
+class HTTPSession:
     def __init__(self):
         self.pycurl = pycurl.Curl()
 #        self.pycurl.setopt(pycurl.VERBOSE, 1)
@@ -33,7 +33,7 @@ class HttpSession:
         self.pycurl.setopt(pycurl.WRITEFUNCTION, response_body.write)
         self.pycurl.setopt(pycurl.HEADERFUNCTION, response_header.write)
         self.pycurl.perform()
-        return HttpSession.parse_header(response_header.getvalue()), response_body.getvalue()
+        return HTTPSession.parse_header(response_header.getvalue()), response_body.getvalue()
 
     @staticmethod
     def parse_header(header):
@@ -44,7 +44,7 @@ class HttpSession:
 
 def main():
     url = 'http://www.google.com'
-    session = HttpSession()
+    session = HTTPSession()
 
     while 1:
         headers, body = session.http_request(url)
